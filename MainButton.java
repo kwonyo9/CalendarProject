@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-//Testing the commit/edition to another file
 
 public class MainButton extends JPanel{
 
@@ -23,7 +22,7 @@ public class MainButton extends JPanel{
 
 		final JPanel upper = new JPanel();
 		//	JPanel lower = new JPanel();
-		upper.setBackground(Color.white);
+		upper.setBackground(Color.WHITE);
 		//	lower.setBackground(Color.white);
 
 		final JButton today = new JButton("TODAY");
@@ -33,25 +32,24 @@ public class MainButton extends JPanel{
 		//		JButton previousMonth = new JButton("<<");
 		//		JButton nextMonth = new JButton(">>");
 		final JButton quit = new JButton("QUIT");
-		final JButton load = new JButton("LOAD EVENTS FROM FILE");
+		final JButton load = new JButton("LOAD");
 		final JButton day = new JButton("DAY");
 		final JButton week = new JButton("WEEK");
 		final JButton month = new JButton("MONTH");
 		final JButton agenda = new JButton("AGENDA");
 		
-		final Calendar cal = Calendar.getInstance();
+		
 
-		today.setOpaque(true);
-		today.setBorderPainted(false); // makes color bg show properly on Mac
+		today.setFont(new Font("Arial", Font.PLAIN, 10));
+		today.setPreferredSize(new Dimension(40,20));
 		today.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Calendar cal = new GregorianCalendar();
-				
 			}
 		});
 		
-		create.setOpaque(true);
-		create.setBorderPainted(false);
+		create.setFont(new Font("Arial", Font.PLAIN, 8));
+		create.setPreferredSize(new Dimension(40,20));
 		create.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -59,8 +57,8 @@ public class MainButton extends JPanel{
 			}
 		});
 		
-		previous.setOpaque(true);
-		previous.setBorderPainted(false);
+		previous.setFont(new Font("Arial", Font.PLAIN, 10));
+		previous.setPreferredSize(new Dimension(40,20));
 		previous.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -68,8 +66,8 @@ public class MainButton extends JPanel{
 			}
 		});
 
-		next.setOpaque(true);
-		next.setBorderPainted(false);
+		next.setFont(new Font("Arial", Font.PLAIN, 10));
+		next.setPreferredSize(new Dimension(40,20));
 		next.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -77,8 +75,8 @@ public class MainButton extends JPanel{
 			}
 		});
 
-		quit.setOpaque(true);
-		quit.setBorderPainted(false);
+		quit.setFont(new Font("Arial", Font.PLAIN, 10));
+		quit.setPreferredSize(new Dimension(40,20));
 		quit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -86,8 +84,8 @@ public class MainButton extends JPanel{
 			}
 		});
 
-		load.setOpaque(true);
-		load.setBorderPainted(false);
+		load.setFont(new Font("Arial", Font.PLAIN, 10));
+		load.setPreferredSize(new Dimension(40,20));
 		load.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e){
 				
@@ -95,8 +93,8 @@ public class MainButton extends JPanel{
 			}
 		});
 
-		day.setOpaque(true);
-		day.setBorderPainted(false);
+		day.setFont(new Font("Arial", Font.PLAIN, 10));
+		day.setPreferredSize(new Dimension(40,20));
 		day.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -104,16 +102,16 @@ public class MainButton extends JPanel{
 			}
 		});
 
-		week.setOpaque(true);
-		week.setBorderPainted(false);
+		week.setFont(new Font("Arial", Font.PLAIN, 10));
+		week.setPreferredSize(new Dimension(40,20));
 		week.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 			}
 		});
 
-		month.setOpaque(true);
-		month.setBorderPainted(false);
+		month.setFont(new Font("Arial", Font.PLAIN, 10));
+		month.setPreferredSize(new Dimension(40,20));
 		month.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -121,8 +119,8 @@ public class MainButton extends JPanel{
 			}
 		});
 
-		agenda.setOpaque(true);
-		agenda.setBorderPainted(false);
+		agenda.setFont(new Font("Arial", Font.PLAIN, 8));
+		agenda.setPreferredSize(new Dimension(40,20));
 		agenda.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
