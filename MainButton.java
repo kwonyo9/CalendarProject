@@ -12,10 +12,14 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 
-public class MainButton extends JPanel{
-
-	
-	public MainButton(final EventModel model){
+public class MainButton extends JPanel
+{
+	/**
+	 *
+	 * @param model
+	 */
+	public MainButton(final EventModel model)
+	{
 		
 		setBackground(Color.white);
 		setLayout(new BorderLayout());
@@ -38,95 +42,78 @@ public class MainButton extends JPanel{
 		final JButton month = new JButton("MONTH");
 		final JButton agenda = new JButton("AGENDA");
 		
-		
 
 		today.setFont(new Font("Arial", Font.PLAIN, 10));
 		today.setPreferredSize(new Dimension(40,20));
-		today.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Calendar cal = new GregorianCalendar();
-			}
+		today.addActionListener(event ->
+		{
+			Calendar cal = new GregorianCalendar();
 		});
 		
 		create.setFont(new Font("Arial", Font.PLAIN, 8));
 		create.setPreferredSize(new Dimension(40,20));
-		create.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
+		create.addActionListener(e ->
+		{
+			//
 		});
 		
 		previous.setFont(new Font("Arial", Font.PLAIN, 10));
 		previous.setPreferredSize(new Dimension(40,20));
-		previous.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				
-			}
+		previous.addActionListener(arg0 ->
+		{
+			//
 		});
 
 		next.setFont(new Font("Arial", Font.PLAIN, 10));
 		next.setPreferredSize(new Dimension(40,20));
-		next.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				
-			}
+		next.addActionListener(arg0 ->
+		{
+			//
 		});
 
 		quit.setFont(new Font("Arial", Font.PLAIN, 10));
 		quit.setPreferredSize(new Dimension(40,20));
-		quit.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				
-			}
+		quit.addActionListener(arg0 ->
+		{
+			//
 		});
 
 		load.setFont(new Font("Arial", Font.PLAIN, 10));
 		load.setPreferredSize(new Dimension(40,20));
-		load.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				
-				
-			}
+		load.addActionListener(e ->
+		{
+			//
 		});
 
 		day.setFont(new Font("Arial", Font.PLAIN, 10));
 		day.setPreferredSize(new Dimension(40,20));
-		day.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-				
-			}
+		day.addActionListener(e ->
+		{
+			//
 		});
 
 		week.setFont(new Font("Arial", Font.PLAIN, 10));
 		week.setPreferredSize(new Dimension(40,20));
-		week.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
+		week.addActionListener(e ->
+		{
+			//
 		});
 
 		month.setFont(new Font("Arial", Font.PLAIN, 10));
 		month.setPreferredSize(new Dimension(40,20));
-		month.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-				
-			}
+		month.addActionListener(e ->
+		{
+			//
 		});
 
 		agenda.setFont(new Font("Arial", Font.PLAIN, 8));
 		agenda.setPreferredSize(new Dimension(40,20));
-		agenda.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
+		agenda.addActionListener(e ->
+		{
+			//
 		});
 
+		//TODO
 		upper.add(today);
 		//		upper.add(previousMonth);
 		upper.add(previous);
@@ -150,5 +137,4 @@ public class MainButton extends JPanel{
 		add(upper, BorderLayout.NORTH);
 		//	add(lower, BorderLayout.SOUTH);
 	}
-
 }

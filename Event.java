@@ -3,11 +3,8 @@ package Proj;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-//Testing the commit
-
-
-public class Event implements Comparable<Event>{
-	
+public class Event implements Comparable<Event>
+{
 	private String title;
 	private int year;
 	private int month;
@@ -37,15 +34,21 @@ public class Event implements Comparable<Event>{
 		this.endTime = endTime;
 		EventModel model = new EventModel();
 		dayOfWeek = model.getWeekDay(year, month, day);
-		
 	}
-	
-	public int compareTo(Event e) {
-		if(e.start.before(this.start) && e.end.before(this.start)) {
+
+	@Override
+	public int compareTo(Event e)
+	{
+		if(e.start.before(this.start) && e.end.before(this.start))
+		{
 			return 1;
-		}else if(e.start.after(this.end) && e.end.after(this.end)) {
+		}
+		else if (e.start.after(this.end) && e.end.after(this.end))
+		{
 			return -1;
-		}else {
+		}
+		else
+		{
 			return 0;
 		}
 	}

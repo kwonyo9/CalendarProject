@@ -2,28 +2,30 @@ package Proj;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.GregorianCalendar;
 
 
-public class EventModel {
-	
-	private ArrayList<Event> events = new ArrayList<>();
-	private Calendar cal;
+public class EventModel
+{
+	private ArrayList<Event> events;
+	private Calendar calendar;
 	private MainView view;
 	private ViewTypes viewType;
 	private Calendar agendaStart;
 	private Calendar agendaEnd;
 	
-	public enum ViewTypes {
+	public enum ViewTypes
+	{
 		DAY, WEEK, MONTH, AGENDA
 	}
 
 	/**
-	 * MVC model of calendar program 
+	 * MVC model of calendar program
 	 */
-	public EventModel() {
-		cal = new GregorianCalendar();
+	public EventModel()
+	{
+		events = new ArrayList<>();
+		calendar = new GregorianCalendar();
 		viewType = ViewTypes.DAY;
 	}
 	
@@ -31,29 +33,39 @@ public class EventModel {
 	 * Set layout of events panel
 	 * @param view - the layout of the events panel
 	 */
-	public void setView(MainView view) {
+	public void setView(MainView view)
+	{
 		this.view = view;
 	}
-	
-	
-	public Calendar getCal() {
-		return cal;
+
+	/**
+	 *
+	 * @return
+	 */
+	public Calendar getCalendar()
+	{
+		return calendar;
 	}
 	
 	/**
 	 * Set day in calendar
 	 * @param day 
 	 */
-	public void setDay(int day) {
-		cal.set(Calendar.DAY_OF_MONTH, day);
+	public void setDay(int day)
+	{
+		calendar.set(Calendar.DAY_OF_MONTH, day);
 		view.repaint();
 	}
-	
+
 	/**
-	 * 
-	 * Helper method for Weekday
+	 *
+	 * @param year
+	 * @param month
+	 * @param day
+	 * @return
 	 */
-	public String getWeekDay(int year, int month, int day) {
+	public String getWeekDay(int year, int month, int day)
+	{
 		return Weekday(year, month, day);
 	}
 
@@ -65,8 +77,8 @@ public class EventModel {
 	 * @return
 	 */
 	private String Weekday(int year, int month, int day) {
-		cal.set(year, month - 1, day);
-		int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
+		calendar.set(year, month - 1, day);
+		int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
 		switch (dayOfWeek) {
 		   case 1:
                return "S";
