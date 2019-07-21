@@ -49,25 +49,19 @@ public class MainView
 		//TODO
 		previousMonth.addActionListener(event -> System.out.println());
 
-		nextMonth.setBackground(new Color(238,238,238));
-		nextMonth.setForeground(Color.BLACK);
-		nextMonth.setSize(new Dimension(30,30));
-
 		//TODO
 		nextMonth.addActionListener(event -> System.out.println());
 
 		monthPanel = new JPanel();
-		monthPanel.setLayout(new GridLayout(0, 7, 0, 0));
+		monthPanel.setBackground(Color.WHITE);
 		JPanel monthWrap = new JPanel();
-		monthWrap.setLayout(new BorderLayout());
-		monthLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
 		month.add(previousMonth, BorderLayout.EAST);
 		month.add(monthLabel, BorderLayout.CENTER);
 		month.add(nextMonth, BorderLayout.WEST);
 		monthWrap.add(month, BorderLayout.NORTH);
 		monthWrap.add(monthPanel, BorderLayout.CENTER);
 		monthWrap.setSize(new Dimension(300,300));
-		monthWrap.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 		drawMonth(monthPanel);
 
 		scrollPane = new JScrollPane();
@@ -98,40 +92,20 @@ public class MainView
 
 	private void drawMonth(JPanel monthPanel)
 	{
-		//Gets the month and the year and sets it on the top of the month view
+		
 		monthLabel.setText(new SimpleDateFormat("MMMM yyyy").format(calendar.getTime()));
-		monthLabel.setFont(new Font("Arial", Font.BOLD, 12));
-
-		//Add Week Labels at top of Month View
-		for (int i = 0; i < 7; i++)
-		{
-			JLabel day = new JLabel("" + DAYS_OF_WEEK.values()[i], SwingConstants.CENTER);
-			day.setBorder(new CompoundBorder(day.getBorder(), new EmptyBorder(2, 2, 2, 2)));
-			day.setFont(new Font("Arial", Font.BOLD, 10));
-			if(i == 0 || i == 6)
-			{
-				day.setForeground(Color.RED);
-			}
-			monthPanel.add(day);
-		}
-
+		
 		//Adds the days in the month to the JLabel day 
-		int daysInMonth = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+		int daysInMonth = calendar.get(Calendar.DAY_OF_MONTH);
 		Calendar getStart = new GregorianCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), 1);
 		int startDay = getStart.get(Calendar.DAY_OF_WEEK);
 		for (int i = 1; i<daysInMonth+startDay; i++)
 		{
-			if (i < startDay)
-			{
-				final JLabel day = new JLabel("");
-				monthPanel.add(day);
-			}
-			else
-			{
+			
 				int dayNumber = i-startDay+1;
-				final JLabel day = new JLabel(dayNumber + "", SwingConstants.CENTER);
-				day.addMouseListener(new MouseListener()
-				{
+				final JLabel day = new JLabel(dayNumber + "");
+				day.addMouseListener(new MouseListener(){
+					
 					public void mouseClicked(MouseEvent e)
 					{
 						int num = Integer.parseInt(day.getText());
@@ -145,16 +119,17 @@ public class MainView
 
 				if (dayNumber == calendar.get(Calendar.DAY_OF_MONTH))
 				{
-					day.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+					day.setBorder(BorderFactory.createLineBorder(Color.RED));
 				}
 
-				day.setFont(new Font("Arial", Font.BOLD, 16));
+			    Font d = new Font("Dialog", Font.PLAIN, 18);      
+				day.setFont(d);
+				day.setBackground(Color.black);
+
 
 				//Adds the JLabel to the JPanel
 				monthPanel.add(day);
-			}
 		}
+		
 	}
-
-	
 }
