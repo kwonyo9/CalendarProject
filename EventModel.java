@@ -7,35 +7,41 @@ import java.util.GregorianCalendar;
 
 public class EventModel
 {
-	private ArrayList<Event> events;
-	private Calendar calendar;
-	private MainView view;
-	private ViewTypes viewType;
+	private ArrayList<Event> events;	//The list of events
+	private Calendar calendar;			//Calendar
+	private MainView view;				//GUI portion
+	private ViewTypes viewType;			//enum part
 	private Calendar agendaStart;
 	private Calendar agendaEnd;
-	
-	public enum ViewTypes
-	{
-		DAY, WEEK, MONTH, AGENDA
-	}
 
 	/**
-	 * MVC model of calendar program
+	 * Constructor for objects of type EventModel
+	 * Conforms MVC model for the pattern
 	 */
 	public EventModel()
 	{
 		events = new ArrayList<>();
 		calendar = new GregorianCalendar();
-		viewType = ViewTypes.DAY;
+		viewType = ViewTypes.DAY;	//<Day> is the initial view to the user
 	}
 	
 	/**
-	 * Set layout of events panel
-	 * @param view - the layout of the events panel
+	 * Sets the selected view in the
+	 * main window
+	 * @param view Chosen layout in the event(s) panel
 	 */
 	public void setView(MainView view)
 	{
 		this.view = view;
+	}
+
+	/**
+	 *
+	 * @param viewType
+	 */
+	public void setViewType(ViewTypes viewType)
+	{
+		this.viewType = viewType;
 	}
 
 	/**
@@ -48,7 +54,8 @@ public class EventModel
 	}
 	
 	/**
-	 * Set day in calendar
+	 * Sets a specific day in the
+	 * visual portion of the calendar
 	 * @param day 
 	 */
 	public void setDay(int day)
@@ -66,36 +73,27 @@ public class EventModel
 	 */
 	public String getWeekDay(int year, int month, int day)
 	{
-		return Weekday(year, month, day);
-	}
-
-	/**
-	 * Get day of the week
-	 * @param year 
-	 * @param month
-	 * @param day
-	 * @return
-	 */
-	private String Weekday(int year, int month, int day) {
 		calendar.set(year, month - 1, day);
 		int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
-		switch (dayOfWeek) {
-		   case 1:
-               return "S";
-           case 2:
-               return "M";
-           case 3:
-               return "T";
-           case 4:
-               return "W";
-           case 5:
-               return "H";
-           case 6:
-               return "F";
-           case 7:
-               return "A";
-           default:
-               return null;
+
+		switch (dayOfWeek)
+		{
+			case 1:
+				return "S"; //Sunday
+			case 2:
+				return "M"; //Monday
+			case 3:
+				return "T"; //Tuesday
+			case 4:
+				return "W"; //Wednesday
+			case 5:
+				return "H"; //Thursday
+			case 6:
+				return "F"; //Friday
+			case 7:
+				return "A"; //Saturday
+			default:
+				return null;
 		}
 	}
 }
