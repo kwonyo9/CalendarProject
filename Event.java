@@ -1,7 +1,7 @@
 package Proj;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Event implements Comparable<Event>
 {
@@ -11,9 +11,6 @@ public class Event implements Comparable<Event>
 	private int day;
 	private String startTime;
 	private String endTime;
-	private Calendar start = new GregorianCalendar();
-	private Calendar end = new GregorianCalendar();
-	private String dayOfWeek;
 
 	/**
 	 * Creates an event in calendar
@@ -24,8 +21,8 @@ public class Event implements Comparable<Event>
 	 * @param startTime - start time of event
 	 * @param endTime - end time of event 
 	 */
-	public Event(String title, int year, int month, int day, String startTime, String endTime) {
-		
+	public Event(String title, int year, int month, int day, String startTime, String endTime)
+	{
 		this.title = title;
 		this.year = year;
 		this.month = month;
@@ -33,23 +30,139 @@ public class Event implements Comparable<Event>
 		this.startTime = startTime;
 		this.endTime = endTime;
 		EventModel model = new EventModel();
-		dayOfWeek = model.getWeekDay(year, month, day);
+		String dayOfWeek = model.getWeekDay(year, month, day);
+	}
+
+	/**
+	 * No args constructor that creates a empty event
+	 * This is meant for filling the parameters later on
+	 * when buttons are pressed in the MainView
+	 */
+	public Event()
+	{
+	}
+
+	/**
+	 * Sets a new title to the created event
+	 * @param title
+	 */
+	public void setTitle(String title)
+	{
+		this.title = title;
+	}
+
+	/**
+	 * Sets a new year to the created event
+	 * @param year
+	 */
+	public void setYear(int year)
+	{
+		this.year = year;
+	}
+
+	/**
+	 * Sets a new month to the created event
+	 * @param month
+	 */
+	public void setMonth(int month)
+	{
+		this.month = month;
+	}
+
+	/**
+	 * Sets a new day to the created event
+	 * @param day
+	 */
+	public void setDay(int day)
+	{
+		this.day = day;
+	}
+
+	/**
+	 * Sets a new starting time to the created event
+	 * @param startTime
+	 */
+	public void setStartTime(String startTime)
+	{
+		this.startTime = startTime;
+	}
+
+	/**
+	 * Sets a new ending time to the created event
+	 * @param endTime
+	 */
+	public void setEndTime(String endTime)
+	{
+		this.endTime = endTime;
 	}
 
 	@Override
-	public int compareTo(Event e)
+	public String toString()
 	{
-		if(e.start.before(this.start) && e.end.before(this.start))
+		//The event (...) takes place on MM/DD/YYYY from HH:MM to HH:MM
+		return "The event: " + title + " takes place on " + month + "/" + day +
+				"/" + year + " from " + startTime + " to " + endTime;
+	}
+
+	/**
+	 * Method that parses the date parameters
+	 * of the events, and returns a LocalDate object
+	 * that is used in the compareTo call between
+	 * objects
+	 * ==============================
+	 * This method is also used in the storing of events
+	 * @return
+	 */
+	public LocalDate eventDate()
+	{
+		LocalDate event = LocalDate.parse(year + "/" + month + "/" + day);
+		return event;
+	}
+
+	/**
+	 * Method that parses the time parameters
+	 * of the event, and returns a LocalTime object
+	 * that is used in the compareTo call between
+	 * objects
+	 * ==============================
+	 * This method is also used in the storing of events
+	 * @return
+	 */
+	public LocalTime eventStartingTime()
+	{
+		LocalTime eventTime = LocalTime.parse(startTime);
+		return eventTime;
+	}
+
+	/**
+	 * Method that parses the time parameters
+	 * of the event, and returns a LocalTime object
+	 * that is used in the compareTo call between
+	 * objects
+	 * ==============================
+	 * This method is also used in the storing of events
+	 * @return
+	 */
+	public LocalTime eventEndingTime()
+	{
+		LocalTime eventTime = LocalTime.parse(endTime);
+		return eventTime;
+	}
+
+	@Override
+	public int compareTo(Event that)
+	{
+		//If dates are the same, we check event times
+		if (this.eventDate().compareTo(that.eventDate()) == 0)
 		{
-			return 1;
+			//If starting times are the same we check ending times
+			if (this.eventStartingTime().compareTo(that.eventStartingTime()) == 0)
+			{
+				//Deepest check involving ending times of the events
+				return this.eventEndingTime().compareTo(that.eventEndingTime());
+			}
+			return this.eventStartingTime().compareTo(that.eventStartingTime());
 		}
-		else if (e.start.after(this.end) && e.end.after(this.end))
-		{
-			return -1;
-		}
-		else
-		{
-			return 0;
-		}
+		return this.eventDate().compareTo(that.eventDate());
 	}
 }
