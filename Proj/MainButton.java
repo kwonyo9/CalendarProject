@@ -4,7 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 public class MainButton extends JPanel
 {
@@ -71,7 +73,32 @@ public class MainButton extends JPanel
 		load.setPreferredSize(new Dimension(40,20));
 		load.addActionListener(event ->
 		{
-			//
+			System.out.println("Read event from file.");
+			File file = new File("event.txt");
+			String[] eventData = new String[6];
+			try{
+				Scanner sc = new Scanner(file);
+				int i = 0;
+				while(sc.hasNextLine()){
+					eventData[i] = sc.nextLine();
+					System.out.println(eventData[i]);
+					i++;
+				}
+				sc.close();
+			} catch (FileNotFoundException e){
+				e.printStackTrace();
+			}
+			if(eventData[0]!= null){
+				String title = eventData[0];
+				int year = Integer.valueOf(eventData[1]);
+				int months = Integer.valueOf(eventData[2]);
+				int days = Integer.valueOf(eventData[3]);
+				String startTime = eventData[4];
+				String endTime = eventData[5];
+				Event events = new Event(title, year, months, days, startTime, endTime);
+				System.out.println(events.toString());
+				System.out.println("Event has been created.");
+			}
 		});
 
 		//Functionality for DAY button
