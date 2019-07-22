@@ -24,7 +24,7 @@ public class EventModel
 		calendar = new GregorianCalendar();
 		viewType = ViewTypes.DAY;	//<Day> is the initial view to the user
 	}
-	
+
 	/**
 	 * Sets the selected view in the
 	 * main window
@@ -52,16 +52,26 @@ public class EventModel
 	{
 		return calendar;
 	}
-	
+
 	/**
 	 * Sets a specific day in the
 	 * visual portion of the calendar
-	 * @param day 
+	 * @param day
 	 */
 	public void setDay(int day)
 	{
 		calendar.set(Calendar.DAY_OF_MONTH, day);
 		view.repaint();
+	}
+
+	/**
+	 * Utility method that adds a new event
+	 * to the Model's list of events
+	 * @param newEvent
+	 */
+	public void addEvent(Event newEvent)
+	{
+		this.events.add(newEvent);
 	}
 
 	/**
