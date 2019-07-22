@@ -53,7 +53,7 @@ public class MainView
 		monthPanel = new JPanel();
 		monthPanel.setBackground(Color.WHITE);
 		JPanel monthWrap = new JPanel();
-		
+
 		month.add(previousMonth, BorderLayout.EAST);
 		month.add(monthLabel, BorderLayout.CENTER);
 		month.add(nextMonth, BorderLayout.WEST);
@@ -90,44 +90,46 @@ public class MainView
 
 	private void drawMonth(JPanel monthPanel)
 	{
-		
+
 		monthLabel.setText(new SimpleDateFormat("MMMM yyyy").format(calendar.getTime()));
-		
-		//Adds the days in the month to the JLabel day 
+
+		//Adds the days in the month to the JLabel day
 		int daysInMonth = calendar.get(Calendar.DAY_OF_MONTH);
 		Calendar getStart = new GregorianCalendar(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), 1);
 		int startDay = getStart.get(Calendar.DAY_OF_WEEK);
-		for (int i = 1; i<daysInMonth+startDay; i++)
+
+		for (int i = 1; i < daysInMonth + startDay; i++)
 		{
-			
-				int dayNumber = i-startDay+1;
-				final JLabel day = new JLabel(dayNumber + "");
-				day.addMouseListener(new MouseListener(){
-					
-					public void mouseClicked(MouseEvent e)
-					{
-						int num = Integer.parseInt(day.getText());
-						model.setDay(num);
-					}
-					public void mousePressed(MouseEvent e) {}
-					public void mouseReleased(MouseEvent e) {}
-					public void mouseEntered(MouseEvent e) {}
-					public void mouseExited(MouseEvent e) {}
-				});
+			int dayNumber = i - startDay + 1;
+			final JLabel day = new JLabel(dayNumber + "");
+			day.addMouseListener(new MouseListener(){
 
-				if (dayNumber == calendar.get(Calendar.DAY_OF_MONTH))
+				public void mouseClicked(MouseEvent e)
 				{
-					day.setBorder(BorderFactory.createLineBorder(Color.RED));
+					int num = Integer.parseInt(day.getText());
+					model.setDay(num);
+					monthLabel.revalidate();
+					monthLabel.repaint();
 				}
+				public void mousePressed(MouseEvent e) {}
+				public void mouseReleased(MouseEvent e) {}
+				public void mouseEntered(MouseEvent e) {}
+				public void mouseExited(MouseEvent e) {}
+			});
 
-			    Font d = new Font("Dialog", Font.PLAIN, 18);      
-				day.setFont(d);
-				day.setBackground(Color.black);
+			if (dayNumber == calendar.get(Calendar.DAY_OF_MONTH))
+			{
+				day.setBorder(BorderFactory.createLineBorder(Color.RED));
+			}
+
+			Font d = new Font("Dialog", Font.PLAIN, 18);
+			day.setFont(d);
+			day.setBackground(Color.BLACK);
 
 
-				//Adds the JLabel to the JPanel
-				monthPanel.add(day);
+			//Adds the JLabel to the JPanel
+			monthPanel.add(day);
 		}
-		
+
 	}
 }
