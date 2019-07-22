@@ -2,10 +2,10 @@ package Proj;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class MainButton extends JPanel
@@ -75,29 +75,49 @@ public class MainButton extends JPanel
 		{
 			System.out.println("Read event from file.");
 			File file = new File("event.txt");
-			String[] eventData = new String[6];
-			try{
-				Scanner sc = new Scanner(file);
-				int i = 0;
-				while(sc.hasNextLine()){
-					eventData[i] = sc.nextLine();
-					System.out.println(eventData[i]);
-					i++;
+
+			//ArrayList that will contain the event data in the .txt file
+			ArrayList<String> eventData = new ArrayList<>();
+
+			try
+			{
+				//We start File reader and memory to read the file
+				FileReader fileReader = new FileReader(file);
+				BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+				String line = bufferedReader.readLine();
+				while (line != null)
+				{
+					//Each event has 6 attributes, so we iterate 6 times
+					for (int i = 0; i < 6; i++)
+					{
+						eventData.add(line); //Add line to the event data
+						line = bufferedReader.readLine(); //Read next line
+					}
+					if (eventData.get(0) != null)
+					{
+						//Convert all data to suitable event format
+						String title = eventData.get(0);
+						int year = Integer.valueOf(eventData.get(1));
+						int months = Integer.valueOf(eventData.get(2));
+						int days = Integer.valueOf(eventData.get(3));
+						String startTime = eventData.get(4);
+						String endTime = eventData.get(5);
+						model.addEvent(new Event(title, year, months, days, startTime, endTime));
+						
+						//We clear all data to continue our file read process
+						eventData.clear();
+						line = bufferedReader.readLine();
+					}
 				}
-				sc.close();
-			} catch (FileNotFoundException e){
+			}
+			catch (FileNotFoundException e)
+			{
 				e.printStackTrace();
 			}
-			if(eventData[0]!= null){
-				String title = eventData[0];
-				int year = Integer.valueOf(eventData[1]);
-				int months = Integer.valueOf(eventData[2]);
-				int days = Integer.valueOf(eventData[3]);
-				String startTime = eventData[4];
-				String endTime = eventData[5];
-				Event events = new Event(title, year, months, days, startTime, endTime);
-				System.out.println(events.toString());
-				System.out.println("Event has been created.");
+			catch (IOException e)
+			{
+				e.printStackTrace();
 			}
 		});
 
@@ -148,13 +168,13 @@ public class MainButton extends JPanel
 		//		upper.add(nextMonth);
 		upper.add(load);
 		//	upper.add(create);
-		
+
 		upper.add(day);
 		upper.add(week);
 		upper.add(month);
 		upper.add(agenda);
-		
-		
+
+
 		upper.add(quit);
 		upper.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
