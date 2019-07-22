@@ -11,22 +11,14 @@ import java.util.GregorianCalendar;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
-
-
-
-
-
 public class MainView
 {
-
 	private EventModel model;
 	private final Calendar cal;
 	private final JScrollPane scrollPane;
 	private final JLabel monthLabel = new JLabel();
 	private final JPanel monthPanel;
 	private final JPanel eventsPanel;
-	
-	
 
 	/**
 	 *
@@ -47,7 +39,7 @@ public class MainView
 		JButton previousMonth = new JButton("<");
 		JButton nextMonth = new JButton(">");
 
-		
+
 		previousMonth.setBackground(new Color(189,189,189));
 		previousMonth.setForeground(Color.BLACK);
 
@@ -58,7 +50,7 @@ public class MainView
 		nextMonth.addActionListener(event -> System.out.println());
 
 		monthPanel = new JPanel();
-        monthPanel.setLayout(new GridLayout(0, 7, 0, 0));
+		monthPanel.setLayout(new GridLayout(0, 7, 0, 0));
 		JPanel monthWrap = new JPanel();
 		monthWrap.setLayout(new BorderLayout());
 		monthLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -68,7 +60,7 @@ public class MainView
 		monthWrap.add(month, BorderLayout.NORTH);
 		monthWrap.add(monthPanel, BorderLayout.CENTER);
 		monthWrap.setSize(new Dimension(400,400));
-		monthWrap.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40)); 
+		monthWrap.setBorder(BorderFactory.createEmptyBorder(40, 40, 40, 40));
 		drawMonth(monthPanel);
 
 		scrollPane = new JScrollPane();
