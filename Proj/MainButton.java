@@ -1,7 +1,6 @@
 package Proj;
 
-import javax.swing.JButton;
-import javax.swing.JPanel;
+import javax.swing.*;
 import java.awt.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;

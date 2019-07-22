@@ -1,14 +1,12 @@
 package Proj;
 
-import java.awt.*;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EmptyBorder;
 
 
 public class MainView
