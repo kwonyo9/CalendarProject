@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-
 public class EventModel
 {
 	private ArrayList<Event> events;	//The list of events
@@ -18,6 +17,7 @@ public class EventModel
 	 * Constructor for objects of type EventModel
 	 * Conforms MVC model for the pattern
 	 */
+
 	public EventModel()
 	{
 		events = new ArrayList<>();
@@ -105,5 +105,10 @@ public class EventModel
 			default:
 				return null;
 		}
+	}
+
+	public ArrayList<Event> getEvents()
+	{
+		return this.events;
 	}
 }
