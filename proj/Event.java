@@ -84,7 +84,9 @@ public class Event {
 	@Override
 	public String toString() {
 		
-		return "Event: "+eventName + "  "+calendar.get(Calendar.YEAR) + "/"+calendar.get(Calendar.MONTH) +"/"+ calendar.get(Calendar.DAY_OF_MONTH) +" " +"Time: ("+startingHours+"-"+endingHours+")";
+		int a = calendar.get(Calendar.MONTH);
+		a += 1;
+		return "Event: "+eventName + "  "+calendar.get(Calendar.YEAR) + "/"+ a +"/"+ calendar.get(Calendar.DAY_OF_MONTH) +" " +"Time: ("+startingHours+"-"+endingHours+")";
 		
 	}
 	
