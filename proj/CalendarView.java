@@ -163,7 +163,7 @@ public class CalendarView extends JFrame implements ActionListener {
 			displayMonth();
 			
 		});
-		
+
 		btnLeft.addActionListener(action -> {
 			
 			resetDayColors();
@@ -171,7 +171,7 @@ public class CalendarView extends JFrame implements ActionListener {
 			displayMonth();
 			
 		});
-		
+
 		btnRight.addActionListener(action -> {
 
 			resetDayColors();
@@ -179,7 +179,7 @@ public class CalendarView extends JFrame implements ActionListener {
 			displayMonth();
 			
 		});
-		
+
 		btnDayBack.addActionListener(action -> {
 			
 			System.out.println("Back...");
@@ -323,16 +323,16 @@ public class CalendarView extends JFrame implements ActionListener {
 		btnToday.setBackground(Color.WHITE);
 		btnToday.setBounds(20, 16, 87, 47);
 		contentPane.add(btnToday);
-		
-		btnLeft = new JButton("<");
-		btnLeft.setBackground(Color.WHITE);
-		btnLeft.setBounds(119, 16, 45, 47);
-		contentPane.add(btnLeft);
-		
-		btnRight = new JButton(">");
-		btnRight.setBackground(Color.WHITE);
-		btnRight.setBounds(176, 16, 45, 47);
-		contentPane.add(btnRight);
+
+		btnDayBack = new JButton("<");
+		btnDayBack.setBackground(Color.WHITE);
+		btnDayBack.setBounds(119, 16, 45, 47);
+		contentPane.add(btnDayBack);
+
+		btnDayForward = new JButton(">");
+		btnDayForward.setBackground(Color.WHITE);
+		btnDayForward.setBounds(176, 16, 45, 47);
+		contentPane.add(btnDayForward);
 		
 		btnFromFile = new JButton("From File");
 		btnFromFile.setBackground(Color.WHITE);
@@ -376,16 +376,17 @@ public class CalendarView extends JFrame implements ActionListener {
 		btnCreate.setForeground(Color.RED);
 		btnCreate.setBounds(20, 70, 398, 38);
 		contentPane.add(btnCreate);
-		
-		btnDayBack = new JButton("<");
-		btnDayBack.setBackground(Color.WHITE);
-		btnDayBack.setBounds(20, 113, 45, 38);
-		contentPane.add(btnDayBack);
-		
-		btnDayForward = new JButton(">");
-		btnDayForward.setBackground(Color.WHITE);
-		btnDayForward.setBounds(77, 113, 45, 38);
-		contentPane.add(btnDayForward);
+
+		btnLeft = new JButton("<");
+		btnLeft.setBackground(Color.WHITE);
+		btnLeft.setBounds(20, 113, 45, 38);
+		contentPane.add(btnLeft);
+
+		btnRight = new JButton(">");
+		btnRight.setBackground(Color.WHITE);
+		btnRight.setBounds(77, 113, 45, 38);
+		contentPane.add(btnRight);
+
 		
 		String[] weeks = {"S","M","T","W","T","F","S"};
 		JLabel[] labels = new JLabel[7];
