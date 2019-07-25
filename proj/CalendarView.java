@@ -270,8 +270,6 @@ public class CalendarView extends JFrame implements ActionListener {
 		
 		String eventName = JOptionPane.showInputDialog("Enter Event Name:");
 		int hoursFromInt = 0, hoursEndInt = 0;
-		
-		setDefaultCloseOperation(JOptionPane.CLOSED_OPTION);
 
 
 		// taking hours.
