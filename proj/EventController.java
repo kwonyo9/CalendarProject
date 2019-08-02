@@ -3,12 +3,12 @@ package proj;
 
 import java.io.BufferedReader;
 
+
+
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Calendar;
-
-
 
 
 public class EventController {
@@ -20,9 +20,9 @@ public class EventController {
 	
 	public static EventController getInstance() {
 		
-		if(controller == null) {
+		
 			controller = new EventController();
-		}
+		
 		
 		return controller;
 		
@@ -181,6 +181,46 @@ public class EventController {
 		
 	}
 	
+	/**
+	 * @param startingDate
+	 * @param endingDate
+	 * @return list of events between these dates.
+	 */
+	public ArrayList<Event> getCalendarEventsBetweenn(Calendar startingDate, Calendar endingDate) {
+		
+		ArrayList<Event> list = new ArrayList<>();
+		
+		for(int i = 0; i < events.size(); i++) {
+			
+			Calendar eventCalendar = events.get(i).getCalendar();
+			if(isSame(startingDate, eventCalendar) || isSame(endingDate, eventCalendar) || 
+					(eventCalendar.before(endingDate) && eventCalendar.after(startingDate))) {
+				
+				list.add(events.get(i));
+				
+			}
+			
+		}
+		
+		return list;
+		
+	}
+	
+	/**
+	 * To check if two calendar are same.
+	 * 
+	 * @param first
+	 * @param second
+	 * @return
+	 */
+	private boolean isSame(Calendar first, Calendar second) {
+		
+		return (first.get(Calendar.DAY_OF_MONTH) == second.get(Calendar.DAY_OF_MONTH))
+				&& (first.get(Calendar.MONTH) == second.get(Calendar.MONTH))
+				&& (first.get(Calendar.YEAR) == second.get(Calendar.YEAR));
+		
+	}
+	
 	public boolean executeFile(File file) {
 		
 		char[] days = {'S','M','T','W','H','F','A'};
@@ -231,6 +271,9 @@ public class EventController {
 			return false;
 		}
 		
+		
+		
 	}
+
 	
 }
