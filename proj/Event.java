@@ -3,8 +3,8 @@ package proj;
 import java.util.Calendar;
 
 
-public class Event {
-
+public class Event
+{
 	// Attributes..
 	private String eventName;
 	private Calendar calendar;
@@ -12,82 +12,125 @@ public class Event {
 	private int endingHours;
 	
 	/**
-	 * Constructor.
+	 * Constructor for objects of type Event.
 	 * 
-	 * @param eventName
+	 * @param eventName Description of the event
 	 * @param calendar
-	 * @param startingHours
-	 * @param endingHours
+	 * @param startingHours Hours of initialization
+	 * @param endingHours Hours of finalization
 	 */
-	public Event(String eventName, Calendar calendar, int startingHours, int endingHours) {
-		
+	public Event(String eventName, Calendar calendar, int startingHours, int endingHours)
+    {
 		this.eventName = eventName;
 		this.calendar = calendar;
 		this.startingHours = startingHours;
 		this.endingHours = endingHours;
-	
 	}
 	
 	/**
-	 * If current event is conflict with the input event.
+	 * Rigorous check to decide if two
+     * different events conflict in time with each other
 	 * 
-	 * @param event
-	 * @return true of false.
+	 * @param event Another event to compare with
+	 * @return Boolean value for conflict
 	 */
-	public boolean isTimeConflict(Event event) {
-		
-		Calendar paramCalendar = event.getCalendar();
-		if(paramCalendar.get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH)
-				&& (paramCalendar.get(Calendar.MONTH) == calendar.get(Calendar.MONTH))
-				&& (paramCalendar.get(Calendar.YEAR) == calendar.get(Calendar.YEAR))) {
-			
-			if((startingHours >= event.getStartingHours() && startingHours < event.getEndingHours()) ||
-					(endingHours > event.getStartingHours() && endingHours <= event.getEndingHours()) ||
-					(event.getStartingHours() >= startingHours && event.getStartingHours() < endingHours) ||
-					(event.getEndingHours() > startingHours && event.getEndingHours() <= endingHours)) {
-				
-				return true;
-				
+	public boolean isTimeConflict(Event event)
+    {
+		Calendar thisCalendar = event.getCalendar();
+		if(thisCalendar.get(Calendar.DAY_OF_MONTH) == calendar.get(Calendar.DAY_OF_MONTH) //Day Check
+			&& (thisCalendar.get(Calendar.MONTH) == calendar.get(Calendar.MONTH))       //Month Check
+			&& (thisCalendar.get(Calendar.YEAR) == calendar.get(Calendar.YEAR)))        //Year Check
+		{
+			if((startingHours >= event.getStartingHours() && startingHours < event.getEndingHours()) || //Check starting hours
+				(endingHours > event.getStartingHours() && endingHours <= event.getEndingHours()) ||    //Check ending hours
+				(event.getStartingHours() >= startingHours && event.getStartingHours() < endingHours) || //Check hour boundary
+				(event.getEndingHours() > startingHours && event.getEndingHours() <= endingHours))  //Check hour boundary
+			{
+				return true; //Events conflict with each other
 			}
-			
 		}
-		
-		return false;
-		
+		return false; //Events do not conflict with each other
 	}
-	
-	public String getEventName() {
+
+    /**
+     * Returns the events purpose/description
+     * @return Event's description
+     */
+	public String getEventName()
+    {
 		return eventName;
 	}
-	public void setEventName(String eventName) {
+
+    /**
+     * Sets a different title for the event
+     * @param eventName The event's new title
+     */
+	public void setEventName(String eventName)
+    {
 		this.eventName = eventName;
 	}
-	public Calendar getCalendar() {
+
+    /**
+     * Gets the used calendar for this event
+     * @return Returns used calendar
+     */
+	public Calendar getCalendar()
+    {
 		return calendar;
 	}
-	public void setCalendar(Calendar calendar) {
+
+    /**
+     * Sets a different calendar for the event
+     * @param calendar The event's new calendar
+     */
+	public void setCalendar(Calendar calendar)
+    {
 		this.calendar = calendar;
 	}
-	public int getStartingHours() {
+
+    /**
+     * Returns the starting event hours
+     * @return The event's starting hours
+     */
+	public int getStartingHours()
+    {
 		return startingHours;
 	}
-	public void setStartingHours(int startingHours) {
+
+    /**
+     * Sets new starting hours to the event
+     * @param startingHours The event's new starting hours
+     */
+	public void setStartingHours(int startingHours)
+    {
 		this.startingHours = startingHours;
 	}
-	public int getEndingHours() {
+
+    /**
+     * Sets new starting hours to the event
+     * @return The event's ending hours
+     */
+	public int getEndingHours()
+    {
 		return endingHours;
 	}
-	public void setEndingHours(int endingHours) {
+
+    /**
+     * Sets new ending hours to the event
+     * @param endingHours The event's new ending hours
+     */
+	public void setEndingHours(int endingHours)
+    {
 		this.endingHours = endingHours;
 	}
 	
 	@Override
-	public String toString() {
-		
-		int a = calendar.get(Calendar.MONTH);
-		a += 1;
-		return "Event: "+eventName + "  "+calendar.get(Calendar.YEAR) + "/"+ a +"/"+ calendar.get(Calendar.DAY_OF_MONTH) +" " +"Time: ("+startingHours+"-"+endingHours+")";
-		
+	public String toString()
+    {
+		int currentMonth = calendar.get(Calendar.MONTH);
+		currentMonth += 1;
+		return "Event: " + eventName + "  " + calendar.get(Calendar.YEAR) +
+                "/"+ currentMonth +"/" + calendar.get(Calendar.DAY_OF_MONTH) + " " +
+                "Time: ("+ startingHours + "-" + endingHours+ ")";
 	}
-	
 }
