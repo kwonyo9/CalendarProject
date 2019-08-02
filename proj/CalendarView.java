@@ -388,7 +388,7 @@ public class CalendarView extends JFrame implements ActionListener {
 		contentPane.add(btnRight);
 
 		
-		String[] weeks = {"S","M","T","W","T","F","S"};
+		String[] weeks = {"SU","M","T","W","T","F","SA"};
 		JLabel[] labels = new JLabel[7];
 		int x = 30;
 		for(int i = 0; i < labels.length; i++) {
