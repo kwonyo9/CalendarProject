@@ -1,5 +1,6 @@
 package proj;
 
+
 import java.awt.Color;
 
 import java.awt.Font;
@@ -21,8 +22,15 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
+<<<<<<< HEAD
 public class CalendarView extends JFrame implements ActionListener
 {
+=======
+
+
+public class CalendarView extends JFrame implements ActionListener {
+
+>>>>>>> ca87db7789a73ad2d7a39051f04db37a0b53f671
 	// Attributes...
 	private static final long serialVersionUID = 1L;
 	private int selectedDay;
@@ -224,10 +232,22 @@ public class CalendarView extends JFrame implements ActionListener
 		{
 			showEventDetails(controller.getCalendarEventsByWeek());
 		});
+<<<<<<< HEAD
 
 		//Buttons that prompts the selection of a file for the events
 		fileSelectButton.addActionListener(action ->
 		{
+=======
+		
+		btnAgenda.addActionListener(action -> {
+			
+			agendaDetails();
+			
+		});
+		
+		btnFromFile.addActionListener(action -> {
+			
+>>>>>>> ca87db7789a73ad2d7a39051f04db37a0b53f671
 			JFileChooser chooser = new JFileChooser();
 			int result = chooser.showOpenDialog(null);
 
@@ -250,7 +270,92 @@ public class CalendarView extends JFrame implements ActionListener
 			}
 		});
 	}
+<<<<<<< HEAD
 
+=======
+	
+	/**
+	 * Agenda Details.
+	 */
+	private void agendaDetails() {
+		
+		Calendar startingDate = Calendar.getInstance();
+		Calendar endingDate = Calendar.getInstance();
+		do {
+			try 
+			{
+				
+				String[] startingDateArray = JOptionPane.showInputDialog("Enter Starting Date (MM/DD/YYYY)").split("/");
+				int month = Integer.parseInt(startingDateArray[0]);
+				if(month > 0 && month <= 12) {
+					
+					startingDate.set(Calendar.MONTH, month - 1);
+				
+				int day = Integer.parseInt(startingDateArray[1]);
+				if(day > 0 && day <= 31) {
+						
+					startingDate.set(Calendar.DAY_OF_MONTH, day);
+					
+				int year = Integer.parseInt(startingDateArray[2]);
+				if(year > 0) {
+							
+					startingDate.set(Calendar.YEAR, year);
+				break;
+						
+						}
+						
+					}
+					
+				}
+				JOptionPane.showMessageDialog(null, "Please enter correct format of date (MMM/DD/YYYY)");
+					
+			}
+			catch(Exception e) {
+				JOptionPane.showMessageDialog(null, "Please enter correct format of date (MMM/DD/YYYY)");
+			}
+		} 
+		while(startingDate.after(Calendar.getInstance()));
+		
+		do {
+			try 
+			{
+				
+				String[] endingDateArray = JOptionPane.showInputDialog("Enter Ending Date (MM/DD/YYYY)").split("/");
+				int month = Integer.parseInt(endingDateArray[0]);
+				if(month > 0 && month <= 12) {
+					
+					endingDate.set(Calendar.MONTH, month - 1);
+				
+				int day = Integer.parseInt(endingDateArray[1]);
+				if(day > 0 && day <= 31) {
+						
+					endingDate.set(Calendar.DAY_OF_MONTH, day);
+					
+				int year = Integer.parseInt(endingDateArray[2]);
+				if(year > 0) {
+							
+					endingDate.set(Calendar.YEAR, year);
+					break;
+							
+						}
+						
+					}
+					
+				}
+				JOptionPane.showMessageDialog(null, "Please enter correct format of date (MMM/DD/YYYY)");
+					
+			}
+			catch(Exception e) {
+				JOptionPane.showMessageDialog(null, "Please enter correct format of date (MMM/DD/YYYY)");
+			}
+		} 
+		while(endingDate.after(Calendar.getInstance()));
+		showEventDetails(controller.getCalendarEventsBetweenn(startingDate, endingDate));
+		
+	}
+	
+	
+>>>>>>> ca87db7789a73ad2d7a39051f04db37a0b53f671
 	/**
 	 * Shows the event details per event
 	 * from the list of events
@@ -296,6 +401,7 @@ public class CalendarView extends JFrame implements ActionListener
 					break;
 				}
 			}
+<<<<<<< HEAD
 			catch(Exception e)
 			{
 				JOptionPane.showMessageDialog(null, "Please select correct value from 0-23 ");
@@ -315,9 +421,20 @@ public class CalendarView extends JFrame implements ActionListener
 				}
 				else
 				{
+=======
+		} 
+		while(eventName != null);
+		do {
+			try {
+				hoursEndInt = Integer.parseInt(JOptionPane.showInputDialog("Enter Ending Hour (1-24)"));
+				if(hoursEndInt < 1 || hoursEndInt > 24 || hoursEndInt < hoursFromInt) {
+					JOptionPane.showMessageDialog(null, "Please select correct value from 1-24 and more than starting hours.");
+				}else {
+>>>>>>> ca87db7789a73ad2d7a39051f04db37a0b53f671
 					break;
 				}
 			}
+<<<<<<< HEAD
 			catch(Exception e)
 			{
 				JOptionPane.showMessageDialog(null, "Please select correct value from 0-23");
@@ -325,6 +442,11 @@ public class CalendarView extends JFrame implements ActionListener
 		}
 		while(true);
 
+=======
+		} 
+		while(hoursFromInt >= 0 && hoursEndInt >= 0);
+		
+>>>>>>> ca87db7789a73ad2d7a39051f04db37a0b53f671
 		Calendar eventCalendar = Calendar.getInstance();
 		eventCalendar.set(Calendar.YEAR, this.controller.getCurrentCalendar().get(Calendar.YEAR));
 		eventCalendar.set(Calendar.MONTH, this.controller.getCurrentCalendar().get(Calendar.MONTH));
