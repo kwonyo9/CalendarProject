@@ -136,6 +136,7 @@ public class EventController
                 dayListOfEvents.add(events.get(i));
             }
         }
+
         return dayListOfEvents;
     }
 
