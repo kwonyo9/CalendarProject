@@ -117,7 +117,7 @@ public class Event
 
     /**
      * Sets new ending hours to the event
-     * @param endingHours The event's new ending hours
+     * @param The event's new ending hours
      */
     public void setEndingHours(int endingHours)
     {
@@ -130,7 +130,7 @@ public class Event
         int currentMonth = calendar.get(Calendar.MONTH);
         currentMonth += 1;
         return "Event: " + eventName + "  " + calendar.get(Calendar.YEAR) +
-                "/"+ currentMonth +"/" + calendar.get(Calendar.DAY_OF_MONTH) + " " +
+                "/" + currentMonth + "/" + calendar.get(Calendar.DAY_OF_MONTH) + " " +
                 "Time: ("+ startingHours + "-" + endingHours+ ")";
     }
 }
