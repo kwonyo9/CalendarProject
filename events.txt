@@ -1,0 +1,10 @@
+Cooking classes;2019;6;7;MWF;17;18;
+Basketball Practice;2019;6;7;TH;13;15;
+Volunteer at animal shelter;2019;9;10;WF;19;21;
+Drive brother to school;2019;8;9;TH;7;8;
+Guitar Lessons;2019;6;8;F;18;20;
+Lunch with grandma;2019;8;10;MT;11;13;
+Babysit cousins;2019;8;9;AS;17;22;
+Do the laundry;2019;8;10;A;19;20;
+Walk the dog;2019;8;10;MWF;7;9;
+Buy groceries;2019;8;10;S;12;14;
