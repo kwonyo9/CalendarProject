@@ -1,23 +1,14 @@
 package proj;
 
-import java.awt.Color;
+import java.awt.*;
 
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
@@ -60,9 +51,10 @@ public class CalendarView extends JFrame implements ActionListener
      */
     public CalendarView()
     {
+        super();
         setTitle("Calendar");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setBounds(100, 100, 703, 476);
+        setBounds(100, 100, 850, 530);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(null);
@@ -440,52 +432,52 @@ public class CalendarView extends JFrame implements ActionListener
      */
     private void initializeComponents()
     {
-        //Button that travels to today's date
-        todayButton = new JButton("Today");
-        todayButton.setBackground(Color.WHITE);
-        todayButton.setBounds(20, 16, 87, 47);
-        contentPane.add(todayButton);
-
         //Button that reverses the date by 1 day
         previousDayButton = new JButton("<");
         previousDayButton.setBackground(Color.WHITE);
-        previousDayButton.setBounds(119, 16, 45, 47);
+        previousDayButton.setBounds(110, 16, 45, 47);
         contentPane.add(previousDayButton);
+
+        //Button that travels to today's date
+        todayButton = new JButton("Today");
+        todayButton.setBackground(Color.WHITE);
+        todayButton.setBounds(170, 16, 87, 47);
+        contentPane.add(todayButton);
 
         //Button that advances the date by 1 day
         nextDayButton = new JButton(">");
         nextDayButton.setBackground(Color.WHITE);
-        nextDayButton.setBounds(176, 16, 45, 47);
+        nextDayButton.setBounds(270, 16, 45, 47);
         contentPane.add(nextDayButton);
 
         //Buttons that prompts the selection of a file for the events
-        fileSelectButton = new JButton("From File");
+        fileSelectButton = new JButton("Load From File");
         fileSelectButton.setBackground(Color.WHITE);
-        fileSelectButton.setBounds(590, 12, 93, 37);
+        fileSelectButton.setBounds(710, 16, 130, 37);
         contentPane.add(fileSelectButton);
 
         //Button that prompts the agenda view
         agendaViewButton = new JButton("Agenda");
         agendaViewButton.setBackground(Color.WHITE);
-        agendaViewButton.setBounds(610, 61, 70, 47);
+        agendaViewButton.setBounds(770, 70, 70, 47);
         contentPane.add(agendaViewButton);
 
         //Button that prompts the MONTH view for events
         monthViewButton = new JButton("Month");
         monthViewButton.setBackground(Color.WHITE);
-        monthViewButton.setBounds(550, 61, 60, 47);
+        monthViewButton.setBounds(660, 70, 60, 47);
         contentPane.add(monthViewButton);
 
         //Button that prompts the WEEK view for events
         weekViewButton = new JButton("Week");
         weekViewButton.setBackground(Color.WHITE);
-        weekViewButton.setBounds(490, 61, 60, 47);
+        weekViewButton.setBounds(550, 70, 60, 47);
         contentPane.add(weekViewButton);
 
         //Button that prompts the DAY view for events
         dayViewButton = new JButton("Day");
         dayViewButton.setBackground(Color.WHITE);
-        dayViewButton.setBounds(430, 61, 60, 47);
+        dayViewButton.setBounds(440, 70, 60, 47);
         contentPane.add(dayViewButton);
 
         //Button that prompts the CREATE function for events
@@ -500,10 +492,16 @@ public class CalendarView extends JFrame implements ActionListener
         previousMonthButton.setBounds(20, 113, 45, 38);
         contentPane.add(previousMonthButton);
 
+        monthYearTitle = new JLabel("October 2013");
+        monthYearTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        monthYearTitle.setFont(new Font("Lucida Grande", Font.BOLD, 30));
+        monthYearTitle.setBounds(77, 113, 278, 37);
+        contentPane.add(monthYearTitle);
+
         //Button that advances the month by 1
         nextMonthButton = new JButton(">");
         nextMonthButton.setBackground(Color.WHITE);
-        nextMonthButton.setBounds(77, 113, 45, 38);
+        nextMonthButton.setBounds(373, 113, 45, 38);
         contentPane.add(nextMonthButton);
 
         //JTextArea that will print all the details from the events
@@ -511,16 +509,10 @@ public class CalendarView extends JFrame implements ActionListener
         eventDetails.setBorder(new LineBorder(new Color(0, 0, 0)));
         eventDetails.setBounds(440, 120, 232, 363);
         JScrollPane pane = new JScrollPane(eventDetails);
-        pane.setBounds(440, 120, 232, 363);
+        pane.setBounds(440, 120, 400, 363);
         contentPane.add(pane);
 
-        monthYearTitle = new JLabel("October 2013");
-        monthYearTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        monthYearTitle.setFont(new Font("Lucida Grande", Font.BOLD, 30));
-        monthYearTitle.setBounds(134, 110, 278, 37);
-        contentPane.add(monthYearTitle);
-
-        String[] weeks = {"SU","M","T","W","T","F","SA"};
+        String[] weeks = {"SUN","M","T","W","TH","F","SAT"};
         JLabel[] labels = new JLabel[7];
         int x = 30;
         for(int i = 0; i < labels.length; i++)
@@ -540,7 +532,7 @@ public class CalendarView extends JFrame implements ActionListener
         // creating days..
         dayNumber = new JButton[6][7];
         x = 30;
-        int y = 225;
+        int y = 240;
         int count = 1;
         for(int i = 0; i < dayNumber.length; i++)
         {
